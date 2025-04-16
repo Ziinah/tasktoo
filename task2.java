@@ -5,24 +5,32 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import org.w3c.dom.*;
 import org.xml.sax.SAXException;
+import java.util.*;
 
 public class task2{
 
-    public static void main(String[] args) {
+        public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter the fields you want to display (comma-separated, e.g. name,postalZip):");
+        String[] selectedFields = scanner.nextLine().split(",");
+
+        Set<String> fieldSet = new HashSet<>();
+        for (String field : selectedFields) {
+            fieldSet.add(field.trim());
+        }
+
         try {
-            // Load the XML file
-            File inputFile = new File("data.xml"); // Make sure your file is named correctly
+            File inputFile = new File("data.xml");
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();
             Document document = builder.parse(inputFile);
-            document.getDocumentElement().normalize(); // Normalizes the XML structure
+            document.getDocumentElement().normalize();
 
-            read(document); // Call the function to read data
+            read(document, fieldSet);
         } catch (ParserConfigurationException | SAXException | IOException e) {
             e.printStackTrace();
         }
     }
-
     private static void read(Document document) {
          String rootTag = document.getDocumentElement().getTagName();
          System.out.println("root tag: " + rootTag);
