@@ -48,15 +48,18 @@ public class task2{
                 String address = element.getElementsByTagName("address").item(0).getTextContent();
                 String list = element.getElementsByTagName("list").item(0).getTextContent();
 
-                System.out.println("----- Record -----");
+                /* System.out.println("----- Record -----");
                 System.out.println("Name: " + name);
                 System.out.println("Postal Zip: " + postalZip);
                 System.out.println("Region: " + region);
                 System.out.println("Country: " + country);
                 System.out.println("Address: " + address);
                 System.out.println("List: " + list);
-                System.out.println();
+                System.out.println(); */
+
+                StringBuilder json = new StringBuilder("{");
             }
         }
+        
     }
 }
